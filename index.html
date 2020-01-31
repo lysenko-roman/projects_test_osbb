@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ОСББ Гончара 62</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script defer src="js/count.js"></script>
+    <script defer src="js/view.js"></script>
+    <style>
+        /*!
+         * chiefSlider (https://itchief.ru/javascript/slider-on-css-and-javascript)
+         * Copyright 2019 Alexander Maltsev
+         * Licensed under MIT (https://github.com/itchief/how-to/tree/master/LICENSE)
+         */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+
+        .slider {
+            position: relative;
+            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 30px;
+        }
+
+        .slider__wrapper {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .slider__item {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .slider__item_item {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .slider__content_text {
+            display: flex;
+        }
+
+        .slider_left_text {
+            margin: 0 20px;
+        }
+
+
+        .slider_left_text hr {
+            margin-top: 0;
+            margin-left: 0;
+            color: #86BC42;
+        }
+
+        .slider_left_text h1 {
+            font-family: Muli;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 0.045em;
+            text-transform: uppercase;
+            color: #6E788D;
+        }
+
+        .slider_left_text p {
+            margin-left: 70px;
+            font-family: Muli;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 20px;
+            color: #9CA3AB;
+        }
+
+        .slider_left_text a {
+            font-family: Muli;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 20px;
+            color: #86BC42;
+        }
+
+        #hidden1  {
+        display: none;
+        }
+
+        .slider_right_img {
+            max-width: 100%;
+            margin-left: 50px;
+
+            }
+
+
+        @media (min-width: 576px) {
+            .slider__item {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+
+        @media (min-width: 992px) {
+            .slider__item {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .slider__item {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+
+            .slider__item_item {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+
+        }
+
+
+
+        .slider__control {
+            position: absolute;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            color: #fff;
+            text-align: center;
+            bottom: 0;
+            background: #fff;
+
+        }
+
+        .slider__control:hover,
+        .slider__control:focus {
+            color: #fff;
+            text-decoration: none;
+            outline: 0;
+        }
+
+        .slider__control_left {
+            left: 0;
+        }
+
+        .slider__control_right {
+            right: 0;
+        }
+
+        .slider__control::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: transparent no-repeat center center;
+            background-size: 100% 100%;
+        }
+
+        .slider__control_left::before {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23424242' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+        }
+
+        .slider__control_right::before {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23424242' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+        }
+
+        .slider__content_header {
+            position: relative;
+        }
+
+        .slider__content_header_news {
+            display: flex;
+        }
+
+        .slider__content_img {
+            display: block;
+            height: auto;
+            max-width: 100%;
+        }
+
+        .slider__content_section {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: #009688;
+            color: #fff;
+            padding: 4px 8px;
+        }
+
+        .slider__content_title {
+            background: #f5f5f5;
+            color: #424242;
+            white-space: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 1.3;
+            padding: 10px 15px;
+            margin: 0;
+            height: 52px;
+        }
+
+        .slider__content_footer {
+            background: #f5f5f5;
+            display: flex;
+            padding: 20px 15px;
+            color: #616161;
+        }
+
+        .slider__content_avatar {
+            flex: 0 0 40px;
+            max-width: 40px;
+        }
+
+        .slider__content_photo {
+            display: block;
+            height: auto;
+            max-width: 100%;
+            border-radius: 50%;
+        }
+
+        .slider__content_author {
+            margin-left: 8px;
+            line-height: 40px;
+        }
+
+        .slider__content_icon {
+            height: 18px;
+            margin-top: 12px;
+            margin-left: auto;
+        }
+
+        .slider__content_views {
+            margin-left: 4px;
+            line-height: 40px;
+        }
+
+        .slider__indicators {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 15;
+            display: flex;
+            justify-content: center;
+            padding-left: 0;
+            margin-right: 15%;
+            margin-left: 15%;
+            list-style: none;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .slider__indicators li {
+            box-sizing: content-box;
+            flex: 0 1 auto;
+            width: 30px;
+            height: 4px;
+            margin-right: 3px;
+            margin-left: 3px;
+            text-indent: -999px;
+            cursor: pointer;
+            background-color: #9e9e9e;
+            background-clip: padding-box;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            opacity: .5;
+            transition: opacity .6s ease;
+        }
+
+        .slider__indicators li.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header__top" class="center">
+            <div id="contacts" class="center">
+
+                    <img src="img/phone.png" alt="phone">
+                    <span>+38 (067) 329 29 47</span>
+                    <img src="img/email.png" alt="email">
+                    <span>e-mailmail@i.ua</span>
+                </div>
+            <div id="logo" class="center">
+                <img src="img/logo.png" alt="ОСББ Гончара 62">
+            </div>
+            <div id="person" class="center">
+
+                    <img src="img/user.png" alt="Персональный вход">
+                    <span>Вход</span>
+
+
+                    <button id="btn__header">Регистрация</button>
+
+            </div>
+
+        </div>
+        <div id="header__menu">
+
+            <ul class="center">
+                <li><a href="#"> Главная </a></li>
+                <li><a href="#"> Объявления </a></li>
+                <li><a href="#"> Управление ОСМД </a></li>
+                <li><a href="#"> Отчетность деятельности </a></li>
+                <li><a href="#"> Форум для жителей </a></li>
+                <li><a href="#"> Контакты </a></li>
+            </ul>
+
+            </div>
+        </div>
+
+    </header>
+
+
+    <main>
+        <div id="bg__container" class="center">
+            <div id="bg__overlay" class="center">
+
+                <div class="flex center">
+                    <h1> Зарегистрируйтесь сейчас </h1>
+                    <h2> чтобы знать новости первым! </h2>
+                </div>
+
+                <div class="flex center">
+                    <form action="">
+                        <input class="input__name" type="text" placeholder="Ваше имя">
+                        <input class="input__phone" type="text" placeholder="Ваш номер телефона">
+                        <input class="btn__form" type="button" value="Готово">
+                    </form>
+                </div>
+
+                <div class=" item center">
+
+                    <div class="center">
+
+                        <div class="icon__center">
+                            <span>1</span>
+                            <img src="img/icon_item_1.png" alt="Регистрируйтесь">
+                            <p>Регистрируйтесь</p>
+                        </div>
+
+                            <div><hr></div>
+
+                        <div class="icon__center">
+                            <span>2</span>
+                            <img src="img/icon_item_2.png" alt="Вкурсе всех новостей">
+                            <p>В курсе всех новостей</p>
+                        </div>
+
+                            <div><hr></div>
+
+                        <div class="icon__center">
+                            <span>3</span>
+                            <img src="img/icon_item_3.png" alt="Просто и понятно">
+                            <p>Просто и понятно</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="info__container">
+            <hr>
+            <h1>последние фото</h1>
+            <p>Мы создаем новый стиль управления жильем! Чем наш стиль работы отличается от других?
+                Мы создаем территорию для комфортной,</p>
+            <p>безопасной жизни людей, доверивших управление своим домом жилой управляющей компании.</p>
+        </div>
+
+        <div class="container">
+
+                <div id="slider" class="slider">
+                    <div class="slider__wrapper">
+                        <div class="slider__item">
+                            <div class="slider__content">
+                                <div class="slider__content_header">
+                                    <img class="slider__content_img" src="img/img_slider1.png" alt="slider1">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="slider__item">
+                            <div class="slider__content">
+                                <div class="slider__content_header">
+                                    <img class="slider__content_img" src="img/img_slider2.png" alt="slider2">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="slider__item">
+                            <div class="slider__content">
+                                <div class="slider__content_header">
+                                    <img class="slider__content_img" src="img/img_slider3.png" alt="slider3">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="slider__item">
+                            <div class="slider__content">
+                                <div class="slider__content_header">
+                                    <img class="slider__content_img" src="img/img_slider1.png" alt="slider1">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="slider__item">
+                            <div class="slider__content">
+                                <div class="slider__content_header">
+                                    <img class="slider__content_img" src="img/img_slider2.png" alt="slider2">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="slider__item">
+                            <div class="slider__content">
+                                <div class="slider__content_header">
+                                    <img class="slider__content_img" src="img/img_slider3.png" alt="slider3">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <a class="slider__control slider__control_left" href="#" role="button">&larr;</a>
+                    <a class="slider__control slider__control_right" href="#" role="button">&rarr;</a>
+                </div>
+
+                <button class="center btn__main"> Смотреть все ОСМД
+                    <hr class="btn__hr">
+                </button>
+
+            </div>
+
+
+        <div class="info__container">
+            <hr>
+            <h1>информация о коммунальных услугах</h1>
+
+
+            <div id="info__container_content" >
+                <div id="info__container_left">
+                    <p>Присоединение дома к ОСМД актуально и для соседних домов, в которых уже успешно функционирует объединение. </p>
+                    <p>Совладельцы дома, желающие присоединиться к ОСМД, должны провести общее собрание, на котором утвердят форму управления домом и решат присоединиться к ОСМД, с которым имеют общую придомовую территорию, элементы благоустройства и тому подобное. </p>
+                    <p>Далее надо письменно обратиться к председателю правления соответствующего ОСМД с просьбой рассмотреть вопрос о присоединении к ОСМД совладельцев дома. Правление созывает общее собрание ОСМД, на котором решает вопрос о присоединении. </p>
+                    <p>В случае положительного решения созывают общее собрание с участием совладельцев обоих домов. Там утверждают новую редакцию Устава совместного ОСМД, решают другие вопросы, связанные с текущей деятельностью ОСМД. Новую редакцию Устава подают госрегистратору. </p>
+                    <p>Третий вариант присоединения дома к созданному ОСМД - создание ассоциации ОСМД.</p>
+                </div>
+                <div id="info__container_right" >
+                    <div class="info__container">
+                        <h1>ПОСТАЧАЛЬНИКИ ПОСЛУГ</h1>
+                        <h1>(ПОДАТИ ПОКАЗНИКИ)</h1>
+                        <hr>
+                    </div>
+                    <div class=" info__container_right_content center" >
+                        <div class="round">
+                            <span>1</span>
+                        </div>
+                        <div>
+                            <a href="#">Київенерго (електропостачання)</a>
+                        </div>
+                    </div>
+
+                  <div class=" info__container_right_content center">
+                      <div class="round">
+                          <span>2</span>
+                      </div>
+                      <div>
+                          <a href="#">Київтеплоенерго (тепло та ГВП)</a>
+                      </div>
+                  </div>
+
+                    <div class=" info__container_right_content center">
+                        <div class="round">
+                            <span>3</span>
+                        </div>
+                        <div>
+                            <a info__container_right_content href="#">Київводоканал (ХВП)</a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div><img id="img_fix_h" src="img/img_fix_01.png" alt=""></div>
+
+            </div>
+        </div>
+
+        <div id="count__container" class="center">
+                <div id="count__container_sum" class="center">
+                    <div class="count__container_content">
+                        <hr>
+                        <h1>тарифы</h1>
+                    </div>
+
+                    <div class="count__container_block">
+                        <div class="count__container_left">
+                            <div class="flex center">
+                                <form action="">
+                                    <p>Введите площадь вашего дома (кв/м)<p/>
+                                    <input id="number_a" class="count__container_input" type="text" placeholder="2000"
+                                           onkeypress='validate(event)' >
+                                </form>
+
+                            </div>
+
+                            <div class="flex center">
+                                <form action="">
+                                    <p>Введите количество квартир<p/>
+                                    <input id="number_b" class="count__container_input" type="text" placeholder="56"
+                                           onkeypress='validate(event)' >
+                                </form>
+
+                            </div>
+
+
+                            <div class="flex center">
+                                <form class="form_inp_radio"  >
+                                    <p>Количество месяцев<p/>
+
+                                    <input id="number_x" class="myradio radio" type="radio" name="number" value="3" onchange="CalcThree()">
+                                    <label for="number_x">3 мес.</label>
+
+                                    <input id="number_y" class="myradio radio" type="radio" name="number" value="6" onchange="CalcSix()">
+                                    <label for="number_y">6 мес.</label>
+
+                                    <input id="number_z" class="myradio radio" type="radio" name="number" value="12" onchange=" CalcTwelve()">
+                                    <label for="number_z">12 мес.</label>
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                        <div class="count__container_right">
+                            <div>
+                                <p>*Цена на услугу в целом - 600.00 грн.<br/>
+                                **Сумма на одну квартиру в месяц - 600.00 грн.</p>
+                            </div>
+                             <div class="count__container_right_round_i">
+                                 <div class="round_i"><span>i</span></div>
+                                 <div><p>Начиная с момента регистрации ОСМД на<br/>
+                                 сайте, предоставляется <mark>90 дней</mark><br/>
+                                 <mark>БЕСПЛАТНОГО</mark> использования сервиса.</p>
+                                 </div>
+                             </div>
+
+                            <div>
+                                <p>Стоимость:
+                                <span id="sum">0.00</span>
+                                грн.</p>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+        <div id="news__container">
+
+            <div class="info__container">
+                <hr>
+                <h1>последние новости</h1>
+               </div>
+
+            <div class="container">
+
+                <div id="sliders" class="slider">
+                    <div class="slider__wrapper">
+
+
+
+                        <div class="slider__item slider__item_item">
+                            <div class="slider__content">
+                                <div class="slider__content_header slider__content_header_news">
+                                    <div  id= " rowall" class="slider__content_text">
+                                        <div class="slider_left_text col1">
+                                            <hr>
+                                            <h1>Повышение контроля руководства за деятельностью ОСМД.</h1>
+
+                                            <p>Информирование о текущем балансе, сохранение истории <br/>
+                                                платежей, начисление квартплат. Информирование о<br/>
+                                                текущем балансе, сохранение истории платежей,<br/>
+                                                начисление квартплат. Информирование о текущем<br/>
+                                                балансе, сохранение истории платежей, начисление<br/>
+                                                квартплат. </p>
+
+                                            <p>Информирование о текущем балансе, сохранение истории <br/>
+                                                платежей, начисление квартплат. Информирование о<br/>
+                                                текущем балансе, сохранение истории платежей,<br/>
+                                                начисление квартплат. Информирование о текущем<br/>
+                                                балансе, сохранение истории платежей, начисление<br/>
+                                                квартплат. </p>
+
+                                            <p> <a href="#hidden1" onclick="view('hidden1'); return false">Читать полностью &rarr;</a></p>
+                                            <div id="hidden1">
+
+                                                <p>Информирование о текущем балансе, сохранение истории <br/>
+                                                    платежей, начисление квартплат. Информирование о<br/>
+                                                    текущем балансе, сохранение истории платежей,<br/>
+                                                    начисление квартплат. Информирование о текущем<br/>
+                                                    балансе, сохранение истории платежей, начисление<br/>
+                                                    квартплат. </p>
+
+                                            </div>
+                                    </div>
+
+                                    <div class="slider_right_img col2">
+                                        <img class="slider__content_img" src="img/slider_img.png" alt="slider1">
+                                    </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+                    <a class="slider__control slider__control_left" href="#" role="button"></a>
+                    <a class="slider__control slider__control_right" href="#" role="button"></a>
+
+                        <img id="img_fix" src="img/img_fix_02.png" alt="">
+            </div>
+                <div class="center">
+                    <button class="center btn__main btn__main_news"> Смотреть все новости
+                        <hr class="btn__hr">
+                    </button>
+
+
+                </div>
+    </main>
+
+    <footer>
+        <div id="footer" class="center">
+            <div id="footer__logo">
+                <div id="footer__logo_container">
+                    <img src="img/footer_logo.png" alt="logo">
+                    <p>Огромное количество успешных проектов<br/>
+                        не оставило нашу компанию без<br/>
+                        драгоценного опыта.</p>
+
+                    <p>Мы - профессионалы своего дела!</p>
+                    <a href="https://twitter.com/" target="_blank">
+                        <img src="img/twitter.png" alt="twitter">
+                    </a>
+
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <img src="img/facebook.png" alt="facebook">
+                    </a>
+
+                    <a href="https://web.telegram.org/" target="_blank">
+                        <img src="img/telegram.png" alt="telegram">
+                    </a></div>
+            </div>
+
+            <div id="footer__menu" class="center">
+
+                <div class="footer__menu_nav_item_1 footer__menu_nav_item_green" >
+                    <p class="text">Навигация</p>
+                    <ul class="first">
+                        <li>&#8250<a href="#"> Главная </a></li>
+                        <li>&#8250<a href="#"> Объявления </a></li>
+                        <li>&#8250<a href="#"> Управление ОСМД </a></li>
+                        <li>&#8250<a href="#"> Отчетность деятельности </a></li>
+                    </ul>
+                </div>
+                <div class="footer__menu_nav_item_2" >
+
+                <ul>
+                        <li>&#8250<a href="#"> Форум для жителей </a></li>
+                        <li>&#8250<a href="#"> Контакты </a></li>
+                        <li>&#8250<a href="#"> Регистрация </a></li>
+                        <li>&#8250<a href="#"> Войти </a></li>
+
+                    </ul>
+                </div>
+
+                <div id="border">
+
+                </div>
+
+                <div class="footer__menu_nav_item_3" >
+                    <div >
+                        <p class="text">Контакты</p>
+                       <div>
+                        <img src="img/footer_phone.png" alt="phone">
+                        <span>+38 (067) 329 29 47</span>
+                    </div>
+                    </div>
+                    <div>
+                        <img src="img/footer_email.png" alt="email">
+                        <span>e-mailmail@i.ua</span>
+                    </div>
+                </div>
+
+                <div class="footer__menu_nav_item_4" >
+
+                    <div>
+                        <img src="img/footer_corner.png">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </footer>
+
+
+    <script src="js/slider.js"></script>
+
+</body>
+</html>
