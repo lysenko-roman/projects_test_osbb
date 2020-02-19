@@ -50,6 +50,12 @@ li {
 #person {
     align-items: center;
 }
+#person img:hover,  span:hover {
+    cursor: pointer;
+    filter: opacity(50%);
+    color: #1EFF09;
+
+}
 
 #person span {
     margin-left: 10px;
@@ -72,6 +78,7 @@ li {
 
 #person button:hover, .btn__main:hover, .btn__main_news:hover {
     background: #58FF0A;
+    cursor: pointer;
 
 }
 
